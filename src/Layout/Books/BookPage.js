@@ -1,14 +1,11 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { bookDeleted } from "../../Store/Slices/booksSlice";
+import { bookDeleted, getBook } from "../../Store/Slices/booksSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 export const BookPage = ({ match }) => {
   const { bookId } = match.params;
-
-  const book = useSelector((state) =>
-    state.books.list.find((book) => book.id == bookId)
-  );
+  const book = useSelector(getBook(bookId));
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -36,7 +33,7 @@ export const BookPage = ({ match }) => {
   );
 
   function editBook() {
-    history.push(`/editBook/${book.id}`);
+    history.push(`/editBook/${bookId}`);
   }
 
   function deleteBook() {

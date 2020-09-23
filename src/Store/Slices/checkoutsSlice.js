@@ -43,6 +43,11 @@ const checkoutsSlice = createSlice({
   },
 });
 
+export const getCheckout = (id) => (state) => {
+  const checkout = state.checkouts.list.find((checkout) => checkout.id == id);
+  return checkout;
+};
+
 export const {
   checkoutAdded,
   checkoutUpdated,

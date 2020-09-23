@@ -64,6 +64,11 @@ const booksSlice = createSlice({
   },
 });
 
+export const getBook = (id) => (state) => {
+  const book = state.books.list.find((book) => book.id == id);
+  return book;
+};
+
 export const { bookAdded, bookUpdated, bookDeleted } = booksSlice.actions;
 
 export default booksSlice.reducer;

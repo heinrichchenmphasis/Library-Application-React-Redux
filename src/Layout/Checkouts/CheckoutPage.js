@@ -1,16 +1,16 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { checkoutDeleted } from "../../Store/Slices/checkoutsSlice";
+import {
+  checkoutDeleted,
+  getCheckout,
+} from "../../Store/Slices/checkoutsSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 export const CheckoutPage = ({ match }) => {
   const { checkoutId } = match.params;
+  const checkout = useSelector(getCheckout(checkoutId));
   const books = useSelector((state) => state.books.list);
   const users = useSelector((state) => state.users.list);
-
-  const checkout = useSelector((state) =>
-    state.checkouts.list.find((checkout) => checkout.id == checkoutId)
-  );
 
   const dispatch = useDispatch();
   const history = useHistory();

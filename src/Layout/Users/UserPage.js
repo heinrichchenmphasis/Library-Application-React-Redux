@@ -1,14 +1,11 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import { userDeleted, getUser } from "../../Store/Slices/usersSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { userDeleted } from "../../Store/Slices/usersSlice";
 
 export const UserPage = ({ match }) => {
   const { userId } = match.params;
-
-  const user = useSelector((state) =>
-    state.users.list.find((user) => user.id == userId)
-  );
+  const user = useSelector(getUser(userId));
 
   const history = useHistory();
   const dispatch = useDispatch();

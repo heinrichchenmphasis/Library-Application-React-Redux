@@ -1,9 +1,6 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
 
-import { checkoutAdded } from "../../Store/Slices/checkoutsSlice";
-
-export const AddCheckoutForm = (props) => {
+export const CheckoutForm = (props) => {
   const bookId = props.bookId;
   const userId = props.userId;
   const period = props.period;
@@ -46,7 +43,7 @@ export const AddCheckoutForm = (props) => {
       </div>
       <button
         type="button"
-        onClick={props.onAddCheckoutClicked}
+        onClick={props.onSubmitClicked}
         disabled={!canAdd}
         className="btn btn-primary"
       >
@@ -56,4 +53,4 @@ export const AddCheckoutForm = (props) => {
   );
 };
 
-export default AddCheckoutForm;
+export default CheckoutForm;

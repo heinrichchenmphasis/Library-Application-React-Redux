@@ -1,27 +1,9 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
 
-import { bookAdded } from "../../Store/Slices/booksSlice";
-
-export const AddBookForm = () => {
-  const [title, setTitle] = useState("");
-  const [author, setAuthor] = useState("");
-  const [bookReference, setBookReference] = useState("");
-
-  const dispatch = useDispatch();
-
-  const onTitleChanged = (e) => setTitle(e.target.value);
-  const onAuthorChanged = (e) => setAuthor(e.target.value);
-  const onBookReferenceChanged = (e) => setBookReference(e.target.value);
-
-  const onAddBookClicked = () => {
-    if (title && author && bookReference) {
-      dispatch(bookAdded({ title, author, bookReference }));
-      setTitle("");
-      setAuthor("");
-      setBookReference("");
-    }
-  };
+export const BookForm = (props) => {
+  const title = props.title;
+  const author = props.author;
+  const bookReference = props.bookReference;
 
   const canAdd = Boolean(title) && Boolean(author) && Boolean(bookReference);
 
@@ -35,7 +17,7 @@ export const AddBookForm = () => {
           id="title"
           placeholder="Enter book title"
           value={title}
-          onChange={onTitleChanged}
+          onChange={props.onTitleChanged}
         />
       </div>
       <div className="form-group">
@@ -46,7 +28,7 @@ export const AddBookForm = () => {
           id="author"
           placeholder="Enter book author"
           value={author}
-          onChange={onAuthorChanged}
+          onChange={props.onAuthorChanged}
         />
       </div>
       <div className="form-group">
@@ -57,12 +39,12 @@ export const AddBookForm = () => {
           id="bookReference"
           placeholder="Enter book reference number"
           value={bookReference}
-          onChange={onBookReferenceChanged}
+          onChange={props.onBookReferenceChanged}
         />
       </div>
       <button
         type="button"
-        onClick={onAddBookClicked}
+        onClick={props.onSubmitClicked}
         disabled={!canAdd}
         className="btn btn-primary"
       >
@@ -72,4 +54,4 @@ export const AddBookForm = () => {
   );
 };
 
-export default AddBookForm;
+export default BookForm;

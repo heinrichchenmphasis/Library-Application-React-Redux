@@ -41,6 +41,11 @@ const usersSlice = createSlice({
   },
 });
 
+export const getUser = (id) => (state) => {
+  const user = state.users.list.find((user) => user.id == id);
+  return user;
+};
+
 export const { userAdded, userUpdated, userDeleted } = usersSlice.actions;
 
 export default usersSlice.reducer;

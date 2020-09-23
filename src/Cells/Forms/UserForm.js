@@ -1,23 +1,8 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { userAdded } from "../../Store/Slices/usersSlice";
+import React from "react";
 
-export const AddUserForm = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-
-  const dispatch = useDispatch();
-
-  const onFirstNameChanged = (e) => setFirstName(e.target.value);
-  const onLastNameChanged = (e) => setLastName(e.target.value);
-
-  const onAddUserClicked = () => {
-    if (firstName && lastName) {
-      dispatch(userAdded({ firstName, lastName }));
-      setFirstName("");
-      setLastName("");
-    }
-  };
+export const UserForm = (props) => {
+  const firstName = props.firstName;
+  const lastName = props.lastName;
 
   const canAdd = Boolean(firstName) && Boolean(lastName);
 
@@ -31,7 +16,7 @@ export const AddUserForm = () => {
           id="firstName"
           placeholder="Enter first name"
           value={firstName}
-          onChange={onFirstNameChanged}
+          onChange={props.onFirstNameChanged}
         />
       </div>
       <div className="form-group">
@@ -42,12 +27,12 @@ export const AddUserForm = () => {
           id="lastName"
           placeholder="Enter last name"
           value={lastName}
-          onChange={onLastNameChanged}
+          onChange={props.onLastNameChanged}
         />
       </div>
       <button
         type="button"
-        onClick={onAddUserClicked}
+        onClick={props.onSubmitClicked}
         disabled={!canAdd}
         className="btn btn-primary"
       >
@@ -57,4 +42,4 @@ export const AddUserForm = () => {
   );
 };
 
-export default AddUserForm;
+export default UserForm;
