@@ -3,8 +3,33 @@ import { createSlice } from "@reduxjs/toolkit";
 const booksSlice = createSlice({
   name: "books",
   initialState: {
-    currentId: 0,
-    list: [],
+    currentId: 5,
+    list: [
+      {
+        title: "Ulysses",
+        author: "James Joyce",
+        bookReference: "111112",
+        id: 1,
+      },
+      {
+        title: "Don Quixote",
+        author: "Miguel de Cervantes",
+        bookReference: "111113",
+        id: 2,
+      },
+      {
+        title: "The Great Gatsby",
+        author: "F. Scott Fitzgerald",
+        bookReference: "111114",
+        id: 3,
+      },
+      {
+        title: "In Search of Lost Time",
+        author: "Marcel Proust",
+        bookReference: "111111",
+        id: 4,
+      },
+    ],
   },
   reducers: {
     bookAdded(state, action) {
@@ -19,7 +44,7 @@ const booksSlice = createSlice({
     },
     bookUpdated(state, action) {
       const { title, author, bookReference, id } = action.payload;
-      const existingBook = state.list.find((book) => book.id === id);
+      const existingBook = state.list.find((book) => book.id == id);
 
       if (existingBook) {
         existingBook.title = title;
@@ -31,7 +56,8 @@ const booksSlice = createSlice({
       const { id } = action.payload;
 
       let index = state.list.findIndex((book) => book.id == id);
-      if (index != -1) {
+
+      if (index !== -1) {
         state.list.splice(index, 1);
       }
     },
